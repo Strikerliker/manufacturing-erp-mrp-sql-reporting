@@ -6,7 +6,7 @@ A SQL Server portfolio project that simulates the reporting and operational supp
 
 A small manufacturer needs better visibility into production, inventory, purchasing, suppliers, and customer orders. The ERP contains the transactional data, but operations leaders need reusable SQL-backed reporting that quickly answers practical business questions.
 
-This project models a simplified manufacturing system and adds reporting queries, reusable views, stored procedures, an ERD, a dashboard-ready reporting layer, Crystal Reports design specifications, formal testing, and an ERP root-cause case study.
+This project models a simplified manufacturing system and demonstrates the lifecycle from business requirements through SQL design, reporting, testing, troubleshooting, data-integrity controls, user training, and support handoff.
 
 ## Architecture / ERD
 
@@ -17,30 +17,36 @@ The model covers suppliers and preferred sourcing, customers and sales orders, i
 ## What this project demonstrates
 
 - Manufacturing ERP/MRP concepts: items, BOMs, inventory, work orders, purchase orders, sales orders, suppliers, and customers
-- SQL Server relational schema design with keys, constraints, and indexes
-- BOM-driven material requirement analysis
-- Inventory shortage and reorder reporting
-- Work-order completion and schedule-risk reporting
-- Supplier and open purchase-order visibility
-- Customer-order fulfillment reporting
-- Reusable SQL views and stored procedures
+- Business requirements translated into technical specifications and acceptance criteria
+- SQL Server relational design with keys, constraints, indexes, views, and stored procedures
+- BOM-driven material requirements, inventory shortages, production risk, supplier exposure, and fulfillment reporting
 - Dashboard-ready datasets for Power BI, SSRS, or SSMS demonstrations
 - Crystal Reports-style report requirements, parameters, grouping, and validation
-- Test planning, regression testing, business acceptance, and change-control evidence
-- ERP troubleshooting and root-cause analysis using SQL and operational data
+- Functional, regression, reconciliation, and user-acceptance testing
+- ERP troubleshooting and root-cause analysis
+- Manufacturing data-integrity, traceability, access, and controlled-change concepts supporting quality-system objectives
+- User training, implementation handoff, issue escalation, and post-launch follow-up
 
 ## Files
 
+### SQL implementation
 - `schema.sql` - tables, constraints, relationships, and reporting indexes
 - `seed.sql` - realistic sample manufacturing data
 - `reports.sql` - eight operational and management reporting queries
 - `database_objects.sql` - reusable SQL views and stored procedures
 - `dashboard_queries.sql` - dashboard-ready datasets
+
+### Design and reporting
 - `docs/erd.svg` - visual entity-relationship diagram
 - `docs/dashboard-preview.svg` - portfolio dashboard preview
 - `reports/crystal-report-specifications.md` - Crystal Reports-style designs for inventory, work orders, and supplier delivery
+- `docs/requirements-and-technical-specification.md` - stakeholders, functional/non-functional requirements, acceptance criteria, traceability, and implementation approach
+
+### Testing, quality, and support
 - `docs/test-plan.md` - functional, regression, reconciliation, and user-acceptance test plan
 - `docs/root-cause-case-study.md` - ERP/MRP troubleshooting case study from symptom through corrective action
+- `docs/data-integrity-and-iatf-support.md` - manufacturing data-integrity and controlled-change practices that can support IATF 16949-related IT objectives
+- `docs/user-training-and-handoff.md` - business-user training, IT support handoff, escalation, change communication, and post-launch validation
 
 ## Quick start
 
@@ -50,7 +56,7 @@ The model covers suppliers and preferred sourcing, customers and sales orders, i
 4. Run `database_objects.sql`.
 5. Run `reports.sql` for the detailed reporting pack.
 6. Run `dashboard_queries.sql` for dashboard-ready result sets.
-7. Review the report specifications, test plan, and root-cause case study as implementation/support artifacts.
+7. Review the requirements, report specifications, test plan, root-cause case study, data-integrity controls, and user handoff artifacts as the implementation/support lifecycle.
 
 The scripts are designed for Microsoft SQL Server / SQL Server Management Studio.
 
@@ -79,44 +85,36 @@ EXEC dbo.usp_GetMaterialShortages;
 
 The preview uses the sample data in `seed.sql` and demonstrates open work orders, reorder exceptions, material shortages, purchase-order exposure, sales-order status, and production completion.
 
-## Enterprise reporting design
+## Requirements-to-support lifecycle
 
-The `reports/crystal-report-specifications.md` artifact defines three business-facing reports: Inventory Shortage, Work Order Status & Risk, and Supplier Delivery / Open PO. Each specification documents business ownership, purpose, SQL source, parameters, fields, grouping, exception formatting, validation, and expected user action.
+1. **Analyze the business need** - document stakeholders, requirements, priorities, and acceptance criteria.
+2. **Design the solution** - map requirements to SQL objects, report specifications, and presentation datasets.
+3. **Build** - implement controlled SQL schema/reporting objects.
+4. **Test** - perform functional, integrity, regression, reconciliation, and user-acceptance testing.
+5. **Implement** - release through an approved change process with validation and recovery planning.
+6. **Train and hand off** - explain report interpretation, user actions, support information, and escalation paths.
+7. **Support** - troubleshoot discrepancies using source-data reconciliation and root-cause analysis.
+8. **Improve** - use recurring issues and business feedback to identify practical system enhancements.
 
-## Testing and change validation
+## Manufacturing quality and data integrity
 
-The `docs/test-plan.md` artifact covers database creation, data loading, integrity constraints, report calculations, stored-procedure behavior, dashboard reconciliation, regression testing, empty-result handling, business-user acceptance, and change-control evidence.
-
-## ERP troubleshooting case study
-
-The `docs/root-cause-case-study.md` scenario investigates a work order that appears to have material on hand but is still at risk. The analysis distinguishes on-hand inventory from inventory available after allocations, expands BOM demand, checks incoming supply, identifies the root cause, documents corrective action, and adds a preventive reporting control.
-
-## Reports included
-
-1. Inventory below reorder point
-2. Work orders late or at risk
-3. Material requirements versus available inventory
-4. Open purchase orders and supplier delivery exposure
-5. Customer orders still requiring production or shipment
-6. Production completion percentage
-7. Manufacturing operations KPI summary
-8. Projected component shortages across open production
+`docs/data-integrity-and-iatf-support.md` documents how referential integrity, standardized calculations, testing, traceability, access controls, controlled change, and evidence retention can support manufacturing quality-system objectives. It intentionally does not claim that this portfolio application is IATF 16949 certified or independently establishes compliance.
 
 ## Example interview walkthrough
 
-1. Start with the ERD and explain how Items connect production, purchasing, inventory, BOMs, and sales.
-2. Show `dbo.vw_InventoryStatus` and identify inventory below reorder point.
-3. Run `dbo.usp_GetMaterialShortages` and explain how open work-order demand is compared with available inventory.
-4. Run `dbo.usp_GetWorkOrderRisk @DaysAhead = 3` to identify orders requiring attention.
-5. Show the Crystal Reports specifications and explain how business requirements become report parameters and layouts.
-6. Walk through the root-cause case study to demonstrate troubleshooting and cross-functional support.
-7. Show the test plan to demonstrate controlled testing, validation, and user acceptance.
-8. Finish with `dbo.usp_GetManufacturingKPIs` and the dashboard preview.
+1. Start with `docs/requirements-and-technical-specification.md` and explain how an operational problem becomes testable requirements.
+2. Show the ERD and explain how Items connect production, purchasing, inventory, BOMs, and sales.
+3. Run `dbo.usp_GetMaterialShortages` and `dbo.usp_GetWorkOrderRisk @DaysAhead = 3`.
+4. Show the Crystal Reports specifications and dashboard preview.
+5. Walk through the root-cause case study to demonstrate troubleshooting.
+6. Show the test plan and explain controlled validation before release.
+7. Explain the data-integrity/change-control artifact and its manufacturing quality-system context.
+8. Finish with the user-training/support handoff guide to demonstrate implementation follow-through and communication with non-technical users.
 
 ## Portfolio talking points
 
-This project demonstrates business-system support rather than only database coding. It shows the ability to understand manufacturing data relationships, translate operational requirements into reusable SQL and report designs, investigate ERP issues, apply data-integrity controls, validate system changes, and communicate actionable information to Operations, Purchasing, Production, Supply Chain, and management.
+This project demonstrates business-system support rather than only database coding. It shows the ability to gather and document requirements, understand manufacturing data relationships, translate operational needs into reusable SQL and report designs, investigate ERP issues, protect data integrity, validate system changes, support controlled implementation, train users, and communicate actionable information to Operations, Purchasing, Production, Supply Chain, Quality, management, and IT.
 
 ## Possible next enhancements
 
-Future versions could add requirements/technical specifications, user training and handoff documentation, IATF 16949-oriented data-integrity controls, routing and work-center tables, lot/serial tracking, quality inspections, machine downtime, labor transactions, SQL Agent automation, a live Power BI report, and an AI support layer over ERP procedures and reporting data.
+Future versions could add routing and work-center tables, lot/serial tracking, quality inspections, machine downtime, labor transactions, SQL Agent automation, a live Power BI report, and an AI support layer over approved ERP procedures and reporting data.
