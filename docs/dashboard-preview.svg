@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="950" viewBox="0 0 1500 950">
+  <defs>
+    <style>
+      .bg{fill:#07111d}.card{fill:#0e1c2b;stroke:#29465f;stroke-width:1.5}.accent{fill:#20c8f6}.title{fill:#fff;font:700 38px Arial}.sub{fill:#8fb3c9;font:18px Arial}.label{fill:#9bbbd0;font:15px Arial}.value{fill:#fff;font:700 42px Arial}.h2{fill:#fff;font:700 23px Arial}.row{fill:#b8d3e8;font:16px Arial}.warn{fill:#ffca66}.danger{fill:#ff7f7f}.good{fill:#64e2a3}.barbg{fill:#173047}.bar{fill:#20c8f6}.small{fill:#7fa7bf;font:14px Arial}
+    </style>
+  </defs>
+  <rect class="bg" width="1500" height="950"/>
+  <text class="title" x="55" y="62">Manufacturing Operations Dashboard</text>
+  <text class="sub" x="55" y="93">Portfolio preview using the seeded SQL Server dataset • snapshot date: 2026-09-14</text>
+
+  <g transform="translate(55 135)"><rect class="card" width="185" height="120" rx="10"/><text class="label" x="18" y="34">Open Work Orders</text><text class="value" x="18" y="88">4</text></g>
+  <g transform="translate(260 135)"><rect class="card" width="185" height="120" rx="10"/><text class="label" x="18" y="34">Late Work Orders</text><text class="value good" x="18" y="88">0</text></g>
+  <g transform="translate(465 135)"><rect class="card" width="185" height="120" rx="10"/><text class="label" x="18" y="34">Below Reorder Pt.</text><text class="value warn" x="18" y="88">5</text></g>
+  <g transform="translate(670 135)"><rect class="card" width="185" height="120" rx="10"/><text class="label" x="18" y="34">Open POs</text><text class="value" x="18" y="88">3</text></g>
+  <g transform="translate(875 135)"><rect class="card" width="185" height="120" rx="10"/><text class="label" x="18" y="34">Past Due POs</text><text class="value danger" x="18" y="88">1</text></g>
+  <g transform="translate(1080 135)"><rect class="card" width="185" height="120" rx="10"/><text class="label" x="18" y="34">Open Sales Orders</text><text class="value" x="18" y="88">3</text></g>
+  <g transform="translate(1285 135)"><rect class="card" width="160" height="120" rx="10"/><text class="label" x="18" y="34">Shortages</text><text class="value danger" x="18" y="88">4</text></g>
+
+  <g transform="translate(55 300)"><rect class="card" width="680" height="285" rx="10"/><text class="h2" x="24" y="42">Work Order Completion</text>
+    <text class="row" x="24" y="85">WO-1001 • FG-1000</text><rect class="barbg" x="230" y="69" width="390" height="20" rx="10"/><rect class="bar" x="230" y="69" width="219" height="20" rx="10"/><text class="small" x="630" y="85">56%</text>
+    <text class="row" x="24" y="130">WO-1002 • FG-2000</text><rect class="barbg" x="230" y="114" width="390" height="20" rx="10"/><rect class="bar" x="230" y="114" width="65" height="20" rx="10"/><text class="small" x="630" y="130">17%</text>
+    <text class="row" x="24" y="175">WO-1003 • FG-1000</text><rect class="barbg" x="230" y="159" width="390" height="20" rx="10"/><rect class="bar" x="230" y="159" width="3" height="20" rx="10"/><text class="small" x="630" y="175">0%</text>
+    <text class="row" x="24" y="220">WO-1004 • WIP-BRACKET</text><rect class="barbg" x="230" y="204" width="390" height="20" rx="10"/><rect class="bar" x="230" y="204" width="98" height="20" rx="10"/><text class="small" x="630" y="220">25%</text>
+  </g>
+
+  <g transform="translate(765 300)"><rect class="card" width="680" height="285" rx="10"/><text class="h2" x="24" y="42">Projected Component Balance</text>
+    <text class="row" x="24" y="85">RM-BOLT-08</text><text class="danger" x="470" y="85" style="font:700 18px Arial">-1,060</text><text class="small" x="560" y="85">SHORTAGE</text>
+    <text class="row" x="24" y="130">WIP-BRACKET-01</text><text class="danger" x="470" y="130" style="font:700 18px Arial">-88</text><text class="small" x="560" y="130">SHORTAGE</text>
+    <text class="row" x="24" y="175">RM-SENSOR-01</text><text class="danger" x="470" y="175" style="font:700 18px Arial">-80</text><text class="small" x="560" y="175">SHORTAGE</text>
+    <text class="row" x="24" y="220">RM-STEEL-01</text><text class="danger" x="470" y="220" style="font:700 18px Arial">-77.5</text><text class="small" x="560" y="220">SHORTAGE</text>
+    <text class="row" x="24" y="265">RM-PLASTIC-01</text><text class="good" x="470" y="265" style="font:700 18px Arial">+50</text><text class="small" x="560" y="265">AVAILABLE</text>
+  </g>
+
+  <g transform="translate(55 620)"><rect class="card" width="680" height="260" rx="10"/><text class="h2" x="24" y="42">Supply Chain Exposure</text>
+    <text class="label" x="24" y="78">PO</text><text class="label" x="130" y="78">Supplier</text><text class="label" x="405" y="78">Open Qty</text><text class="label" x="535" y="78">Status</text>
+    <text class="row" x="24" y="118">PO-501</text><text class="row" x="130" y="118">Midwest Metals</text><text class="row" x="405" y="118">200</text><text class="warn" x="535" y="118" style="font:700 16px Arial">DUE SOON</text>
+    <text class="row" x="24" y="158">PO-502</text><text class="row" x="130" y="158">Industrial Fasteners</text><text class="row" x="405" y="158">600</text><text class="warn" x="535" y="158" style="font:700 16px Arial">DUE SOON</text>
+    <text class="row" x="24" y="198">PO-503</text><text class="row" x="130" y="198">Great Lakes Electronics</text><text class="row" x="405" y="198">80</text><text class="danger" x="535" y="198" style="font:700 16px Arial">PAST DUE</text>
+  </g>
+
+  <g transform="translate(765 620)"><rect class="card" width="680" height="260" rx="10"/><text class="h2" x="24" y="42">Inventory Reorder Exceptions</text>
+    <text class="label" x="24" y="78">Item</text><text class="label" x="315" y="78">Available</text><text class="label" x="430" y="78">Reorder Pt.</text><text class="label" x="560" y="78">Gap</text>
+    <text class="row" x="24" y="118">RM-BOLT-08</text><text class="row" x="315" y="118">250</text><text class="row" x="430" y="118">500</text><text class="danger" x="560" y="118" style="font:700 16px Arial">250</text>
+    <text class="row" x="24" y="153">RM-STEEL-01</text><text class="row" x="315" y="153">55</text><text class="row" x="430" y="153">120</text><text class="danger" x="560" y="153" style="font:700 16px Arial">65</text>
+    <text class="row" x="24" y="188">RM-SENSOR-01</text><text class="row" x="315" y="188">20</text><text class="row" x="430" y="188">80</text><text class="danger" x="560" y="188" style="font:700 16px Arial">60</text>
+    <text class="row" x="24" y="223">WIP-BRACKET-01</text><text class="row" x="315" y="223">12</text><text class="row" x="430" y="223">40</text><text class="danger" x="560" y="223" style="font:700 16px Arial">28</text>
+  </g>
+</svg>
