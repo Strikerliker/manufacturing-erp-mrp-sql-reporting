@@ -1,12 +1,25 @@
 # Manufacturing ERP/MRP SQL Reporting System
 
-A compact SQL Server portfolio project that simulates the reporting work of an IT Systems Analyst supporting a manufacturing ERP/MRP environment.
+A SQL Server portfolio project that simulates the reporting and operational support work of an IT Systems Analyst supporting a manufacturing ERP/MRP environment.
 
 ## Business scenario
 
-A small manufacturer needs better visibility into production, inventory, purchasing, and customer orders. The ERP contains the data, but operations leaders need clear SQL-backed reports that answer practical questions quickly.
+A small manufacturer needs better visibility into production, inventory, purchasing, suppliers, and customer orders. The ERP contains the transactional data, but operations leaders need reusable SQL-backed reporting that quickly answers practical business questions.
 
-This project models a simplified manufacturing system and provides reusable SQL reports for those day-to-day decisions.
+This project models a simplified manufacturing system and adds reporting queries, reusable views, stored procedures, an ERD, and a dashboard-ready reporting layer.
+
+## Architecture / ERD
+
+![Manufacturing ERP/MRP ERD](docs/erd.svg)
+
+The model covers:
+
+- Suppliers and preferred item sourcing
+- Customers and sales orders
+- Items and inventory balances
+- Parent/component bill-of-material relationships
+- Production work orders
+- Purchase orders and supplier delivery exposure
 
 ## What this project demonstrates
 
@@ -14,25 +27,61 @@ This project models a simplified manufacturing system and provides reusable SQL 
 - SQL Server relational schema design with keys, constraints, and indexes
 - BOM-driven material requirement analysis
 - Inventory shortage and reorder reporting
-- Work-order schedule risk reporting
+- Work-order completion and schedule-risk reporting
 - Supplier and open purchase-order visibility
 - Customer-order fulfillment reporting
-- Production completion and management KPI reporting
+- Reusable SQL views and stored procedures
+- Dashboard-ready datasets for Power BI, SSRS, or SSMS demonstrations
 
 ## Files
 
-- `schema.sql` - creates the SQL Server tables, constraints, and indexes
+- `schema.sql` - creates tables, constraints, relationships, and reporting indexes
 - `seed.sql` - loads realistic sample manufacturing data
-- `reports.sql` - contains operational and management reporting queries
+- `reports.sql` - contains eight operational and management reporting queries
+- `database_objects.sql` - creates reusable SQL views and stored procedures
+- `dashboard_queries.sql` - returns dashboard-ready KPI, production, inventory, shortage, purchasing, and fulfillment datasets
+- `docs/erd.svg` - visual entity-relationship diagram
+- `docs/dashboard-preview.svg` - portfolio dashboard preview built from the seeded dataset
 
 ## Quick start
 
 1. Create an empty SQL Server database named `ManufacturingERP`.
 2. Run `schema.sql`.
 3. Run `seed.sql`.
-4. Run `reports.sql` one section at a time.
+4. Run `database_objects.sql`.
+5. Run `reports.sql` for the detailed reporting pack.
+6. Run `dashboard_queries.sql` for dashboard-ready result sets.
 
 The scripts are designed for Microsoft SQL Server / SQL Server Management Studio.
+
+## Reusable database objects
+
+### Views
+
+- `dbo.vw_InventoryStatus` - available inventory, reorder status, and count-date visibility
+- `dbo.vw_OpenWorkOrders` - production progress, remaining quantity, percent complete, and schedule risk
+- `dbo.vw_MaterialShortages` - aggregated open-production demand versus available component inventory
+- `dbo.vw_OpenPurchaseOrders` - supplier, open quantity, expected date, and delivery-risk status
+
+### Stored procedures
+
+- `dbo.usp_GetManufacturingKPIs` - management KPI card dataset
+- `dbo.usp_GetWorkOrderRisk @DaysAhead` - configurable work-order schedule-risk report
+- `dbo.usp_GetMaterialShortages` - projected shortage report ordered by severity
+
+Example:
+
+```sql
+EXEC dbo.usp_GetManufacturingKPIs;
+EXEC dbo.usp_GetWorkOrderRisk @DaysAhead = 3;
+EXEC dbo.usp_GetMaterialShortages;
+```
+
+## Dashboard preview
+
+![Manufacturing Operations Dashboard](docs/dashboard-preview.svg)
+
+The preview uses the sample data in `seed.sql` and demonstrates the types of visuals that can be produced from the reporting layer: open work orders, reorder exceptions, material shortages, purchase-order exposure, sales-order status, and production completion.
 
 ## Reports included
 
@@ -49,26 +98,27 @@ The scripts are designed for Microsoft SQL Server / SQL Server Management Studio
 
 A useful demo path is:
 
-1. Show the `Items`, `BillOfMaterials`, `Inventory`, and `WorkOrders` relationships.
-2. Open the material-requirements report and explain how BOM quantity is multiplied by remaining work-order quantity.
-3. Show which components have a negative projected balance.
-4. Open the work-order risk report and identify late or near-due production orders.
-5. Finish with the KPI summary to show how the same transactional data can support management reporting.
+1. Start with the ERD and explain how Items connect production, purchasing, inventory, BOMs, and sales.
+2. Show `dbo.vw_InventoryStatus` and identify inventory below reorder point.
+3. Run `dbo.usp_GetMaterialShortages` and explain how open work-order demand is compared with available component inventory.
+4. Run `dbo.usp_GetWorkOrderRisk @DaysAhead = 3` to identify production orders that need attention.
+5. Run `dbo.usp_GetManufacturingKPIs` and finish with the dashboard preview to show how transactional SQL supports management reporting.
 
 ## Business questions answered
 
 - Which inventory items are below their reorder point?
-- Which work orders are late or at risk?
+- Which work orders are late or approaching their due date?
 - Which components could stop production?
-- What quantities are still open on supplier purchase orders?
+- What quantities remain open on supplier purchase orders?
+- Which suppliers have past-due or near-due deliveries?
 - Which customer orders still require production or shipment?
 - How far along is each manufacturing work order?
-- What are the current high-level production and supply-chain KPIs?
+- What are the current high-level manufacturing and supply-chain KPIs?
 
 ## Portfolio talking points
 
-This project focuses on business-system support rather than a purely cloud-native use case. It demonstrates the ability to understand manufacturing data relationships, translate operational questions into SQL, validate data through constraints, and produce reports that operations, purchasing, production, and management teams can use.
+This project focuses on business-system support rather than a purely cloud-native use case. It demonstrates the ability to understand manufacturing data relationships, translate operational questions into reusable SQL, apply data-integrity controls, create reporting abstractions, and present technical data in a format useful to operations, purchasing, production, and management teams.
 
 ## Possible next enhancements
 
-A larger version could add SQL views, stored procedures, lot/serial tracking, routing/operations, quality records, machine downtime, labor transactions, SSRS/Power BI dashboards, and an AI support layer over the ERP knowledge base.
+Future versions could add routing and work-center tables, lot/serial tracking, quality inspections, machine downtime, labor transactions, SQL Agent automation, a live Power BI report, and an AI support layer over ERP procedures and reporting data.
