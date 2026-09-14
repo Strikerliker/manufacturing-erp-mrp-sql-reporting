@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <style>
+      .bg{fill:#07111d}.panel{fill:#0e1c2b;stroke:#28c6f7;stroke-width:2}.title{fill:#ffffff;font:700 24px Arial}.field{fill:#b8d3e8;font:16px Arial}.pk{fill:#55e0a3;font:700 15px Arial}.fk{fill:#f7c35c;font:700 15px Arial}.line{stroke:#6aa7c8;stroke-width:2;fill:none}.head{fill:#28c6f7;font:700 36px Arial}.sub{fill:#86abc4;font:18px Arial}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#6aa7c8"/></marker>
+  </defs>
+  <rect class="bg" width="1400" height="900"/>
+  <text class="head" x="55" y="58">Manufacturing ERP/MRP Data Model</text>
+  <text class="sub" x="55" y="88">Core entities for inventory, BOMs, production, purchasing, and sales reporting</text>
+
+  <g transform="translate(70 150)"><rect class="panel" width="260" height="180" rx="10"/><text class="title" x="18" y="34">Suppliers</text><text class="pk" x="18" y="68">PK SupplierID</text><text class="field" x="18" y="98">SupplierName</text><text class="field" x="18" y="128">LeadTimeDays</text><text class="field" x="18" y="158">Active</text></g>
+  <g transform="translate(410 120)"><rect class="panel" width="290" height="260" rx="10"/><text class="title" x="18" y="34">Items</text><text class="pk" x="18" y="68">PK ItemID</text><text class="field" x="18" y="98">ItemNumber</text><text class="field" x="18" y="128">Description</text><text class="field" x="18" y="158">ItemType</text><text class="field" x="18" y="188">ReorderPoint</text><text class="field" x="18" y="218">StandardCost</text><text class="fk" x="18" y="248">FK PreferredSupplierID</text></g>
+  <g transform="translate(785 125)"><rect class="panel" width="320" height="220" rx="10"/><text class="title" x="18" y="34">BillOfMaterials</text><text class="pk" x="18" y="70">PK/FK ParentItemID</text><text class="pk" x="18" y="105">PK/FK ComponentItemID</text><text class="field" x="18" y="140">QuantityPer</text><text class="sub" x="18" y="182">Self-referencing Item structure</text></g>
+  <g transform="translate(1130 150)"><rect class="panel" width="230" height="180" rx="10"/><text class="title" x="18" y="34">Inventory</text><text class="pk" x="18" y="68">PK/FK ItemID</text><text class="field" x="18" y="98">QuantityOnHand</text><text class="field" x="18" y="128">QuantityAllocated</text><text class="field" x="18" y="158">LastCountDate</text></g>
+
+  <g transform="translate(90 520)"><rect class="panel" width="280" height="220" rx="10"/><text class="title" x="18" y="34">Customers</text><text class="pk" x="18" y="68">PK CustomerID</text><text class="field" x="18" y="98">CustomerName</text><text class="field" x="18" y="128">Active</text></g>
+  <g transform="translate(425 490)"><rect class="panel" width="300" height="270" rx="10"/><text class="title" x="18" y="34">SalesOrders</text><text class="pk" x="18" y="68">PK SalesOrderID</text><text class="fk" x="18" y="98">FK CustomerID</text><text class="fk" x="18" y="128">FK ItemID</text><text class="field" x="18" y="158">OrderQuantity</text><text class="field" x="18" y="188">ShippedQuantity</text><text class="field" x="18" y="218">RequiredDate</text><text class="field" x="18" y="248">Status</text></g>
+  <g transform="translate(785 475)"><rect class="panel" width="300" height="290" rx="10"/><text class="title" x="18" y="34">WorkOrders</text><text class="pk" x="18" y="68">PK WorkOrderID</text><text class="fk" x="18" y="98">FK ItemID</text><text class="field" x="18" y="128">PlannedQuantity</text><text class="field" x="18" y="158">CompletedQuantity</text><text class="field" x="18" y="188">StartDate</text><text class="field" x="18" y="218">DueDate</text><text class="field" x="18" y="248">Status</text></g>
+  <g transform="translate(1130 470)"><rect class="panel" width="240" height="300" rx="10"/><text class="title" x="18" y="34">PurchaseOrders</text><text class="pk" x="18" y="68">PK PurchaseOrderID</text><text class="fk" x="18" y="98">FK SupplierID</text><text class="fk" x="18" y="128">FK ItemID</text><text class="field" x="18" y="158">OrderedQuantity</text><text class="field" x="18" y="188">ReceivedQuantity</text><text class="field" x="18" y="218">ExpectedDate</text><text class="field" x="18" y="248">Status</text></g>
+
+  <path class="line" marker-end="url(#arrow)" d="M330 240 C365 240 380 240 410 240"/>
+  <path class="line" marker-end="url(#arrow)" d="M700 225 C735 225 750 225 785 225"/>
+  <path class="line" marker-end="url(#arrow)" d="M1105 230 C1120 230 1120 230 1130 230"/>
+  <path class="line" marker-end="url(#arrow)" d="M555 380 C555 430 555 455 575 490"/>
+  <path class="line" marker-end="url(#arrow)" d="M605 380 C700 410 820 420 900 475"/>
+  <path class="line" marker-end="url(#arrow)" d="M650 355 C850 355 1120 370 1210 470"/>
+  <path class="line" marker-end="url(#arrow)" d="M370 620 C395 620 405 620 425 620"/>
+  <path class="line" marker-end="url(#arrow)" d="M210 330 C300 420 1000 410 1180 470"/>
+
+  <text class="sub" x="55" y="845">Green = primary key • Gold = foreign key • arrows indicate referenced relationships</text>
+</svg>
