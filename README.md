@@ -14,6 +14,14 @@ This project models a simplified manufacturing system and demonstrates the lifec
 
 The model covers suppliers and preferred sourcing, customers and sales orders, items and inventory, parent/component BOM relationships, production work orders, and purchase-order delivery exposure.
 
+## AWS reference architecture
+
+![Manufacturing ERP/MRP SQL Reporting AWS Architecture](docs/aws-manufacturing-erp-mrp-reporting-architecture.svg)
+
+This reference architecture shows how the SQL reporting solution could be extended into AWS for secure connectivity, ETL, governed reporting storage, scheduled refreshes, dashboards, encryption, access control, and monitoring. It illustrates Site-to-Site VPN, AWS Glue, Amazon RDS for SQL Server, Amazon S3, Amazon QuickSight, AWS Lambda, AWS IAM, AWS KMS, and Amazon CloudWatch.
+
+The repository itself remains a SQL Server portfolio implementation; the diagram is a conceptual cloud extension and does not claim that these AWS services are currently deployed.
+
 ## What this project demonstrates
 
 - Manufacturing ERP/MRP concepts: items, BOMs, inventory, work orders, purchase orders, sales orders, suppliers, and customers
@@ -38,6 +46,7 @@ The model covers suppliers and preferred sourcing, customers and sales orders, i
 
 ### Design and reporting
 - `docs/erd.svg` - visual entity-relationship diagram
+- `docs/aws-manufacturing-erp-mrp-reporting-architecture.svg` - conceptual AWS reference architecture
 - `docs/dashboard-preview.svg` - portfolio dashboard preview
 - `reports/crystal-report-specifications.md` - Crystal Reports-style designs for inventory, work orders, and supplier delivery
 - `docs/requirements-and-technical-specification.md` - stakeholders, functional/non-functional requirements, acceptance criteria, traceability, and implementation approach
@@ -104,12 +113,13 @@ The preview uses the sample data in `seed.sql` and demonstrates open work orders
 
 1. Start with `docs/requirements-and-technical-specification.md` and explain how an operational problem becomes testable requirements.
 2. Show the ERD and explain how Items connect production, purchasing, inventory, BOMs, and sales.
-3. Run `dbo.usp_GetMaterialShortages` and `dbo.usp_GetWorkOrderRisk @DaysAhead = 3`.
-4. Show the Crystal Reports specifications and dashboard preview.
-5. Walk through the root-cause case study to demonstrate troubleshooting.
-6. Show the test plan and explain controlled validation before release.
-7. Explain the data-integrity/change-control artifact and its manufacturing quality-system context.
-8. Finish with the user-training/support handoff guide to demonstrate implementation follow-through and communication with non-technical users.
+3. Show the AWS reference architecture and explain how the reporting solution could be extended into a secure AWS analytics pattern.
+4. Run `dbo.usp_GetMaterialShortages` and `dbo.usp_GetWorkOrderRisk @DaysAhead = 3`.
+5. Show the Crystal Reports specifications and dashboard preview.
+6. Walk through the root-cause case study to demonstrate troubleshooting.
+7. Show the test plan and explain controlled validation before release.
+8. Explain the data-integrity/change-control artifact and its manufacturing quality-system context.
+9. Finish with the user-training/support handoff guide to demonstrate implementation follow-through and communication with non-technical users.
 
 ## Portfolio talking points
 
